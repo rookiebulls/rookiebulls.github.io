@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://rookiebulls.github.io/</loc>
-<lastmod>2015-08-03T18:17:07-00:00</lastmod>
+<lastmod>2015-08-03T18:34:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://rookiebulls.github.io/archives.html</loc>
-<lastmod>2015-08-03T18:17:07-00:00</lastmod>
+<lastmod>2015-08-03T18:34:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://rookiebulls.github.io/tags.html</loc>
-<lastmod>2015-08-03T18:17:07-00:00</lastmod>
+<lastmod>2015-08-03T18:34:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://rookiebulls.github.io/categories.html</loc>
-<lastmod>2015-08-03T18:17:07-00:00</lastmod>
+<lastmod>2015-08-03T18:34:37-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://rookiebulls.github.io/play-stock-info.html</loc>
+<lastmod>2015-08-03T18:20:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -46,6 +53,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://rookiebulls.github.io/category/programming.html</loc>
+<lastmod>2015-08-03T18:20:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://rookiebulls.github.io/tag/python.html</loc>
+<lastmod>2015-08-03T18:20:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://rookiebulls.github.io/tag/thoughts.html</loc>
 <lastmod>2015-08-03T15:22:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -53,8 +74,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://rookiebulls.github.io/tag/scala.html</loc>
+<lastmod>2015-08-03T18:20:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://rookiebulls.github.io/author/leo.html</loc>
-<lastmod>2015-08-03T15:22:00+00:09</lastmod>
+<lastmod>2015-08-03T18:20:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
