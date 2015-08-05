@@ -68,14 +68,14 @@
         <div class="span8 offset2 article-content">
 
             
-            <h1>Install MingGW and gcc</h1>
+            <h2>Install MingGW and gcc</h2>
 <p>Install MingGW if you are using windows, which I am.
 After intalling MingGW, you need to install gcc complier.
 With all this done, you need to add your MingGW Bin directory
 to your PATH environment.
 Lauch CMD, type "gcc -v", you will see some information if you 
 successfully install gcc.</p>
-<h1>Write some code in C</h1>
+<h2>Write some code in C</h2>
 <p>A simple c file.</p>
 <div class="highlight"><pre>__declspec( dllexport ) int add2(int a, int b)
 {
@@ -93,7 +93,7 @@ there would be an error " error: expected identifier or '(' before string consta
 
 
 <p>"-shared" means making this a dll file.</p>
-<h1>Call DLL in python</h1>
+<h2>Call DLL in python</h2>
 <p>Using module ctypes to load a dll file.</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">ctypes</span>
 
@@ -115,7 +115,7 @@ you have to change your C code to</p>
 </pre></div>
 
 
-<p>otherwise, there would be an error,"ValueError: Procedure probably called with too many arguments (8 bytes in excess)"</p>
+<p>otherwise, there would be an error,<code>"ValueError: Procedure probably called with too many arguments (8 bytes in excess)"</code></p>
             
             <section>
 <div class="accordion" id="accordion2">
