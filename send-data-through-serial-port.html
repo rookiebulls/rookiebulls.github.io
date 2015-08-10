@@ -10,18 +10,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="c, python, programming, " />
+<meta name="keywords" content="python, programming, " />
 
-<meta property="og:title" content="Python Call C DLL "/>
-<meta property="og:url" content="http://rookiebulls.github.io/python-call-c-dll.html" />
+<meta property="og:title" content="SEND DATA THROUGH SERIAL PORT "/>
+<meta property="og:url" content="http://rookiebulls.github.io/send-data-through-serial-port.html" />
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="High Tea When You Guys Free" />
 <meta property="og:article:author" content="Leo" />
-<meta property="og:article:published_time" content="2015-08-05T10:17:00+02:00" />
-<meta name="twitter:title" content="Python Call C DLL ">
+<meta property="og:article:published_time" content="2015-08-10T15:21:00+02:00" />
+<meta name="twitter:title" content="SEND DATA THROUGH SERIAL PORT ">
 <meta name="twitter:description" content="">
 
-        <title>Python Call C DLL  · High Tea When You Guys Free
+        <title>SEND DATA THROUGH SERIAL PORT  · High Tea When You Guys Free
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="http://rookiebulls.github.io/python-call-c-dll.html"> Python Call C DLL  </a></h1>
+    <h1><a href="http://rookiebulls.github.io/send-data-through-serial-port.html"> SEND DATA THROUGH SERIAL PORT  </a></h1>
     </header>
 </div>
 
@@ -68,63 +68,69 @@
         <div class="span8 offset2 article-content">
 
             
-            <h2>Install MingGW and gcc</h2>
-<p>Install MingGW if you are using windows, which I am.
-After intalling MingGW, you need to install gcc compiler.
-With all this done, you need to add your MingGW Bin directory
-to your PATH environment.
-Lauch CMD, type "gcc -v", you will see some information if you 
-successfully install gcc.</p>
-<h2>Write some code in C</h2>
-<p>A simple c file.</p>
-<div class="highlight"><pre>__declspec( dllexport ) int add2(int a, int b)
-{
-    return a+b;
-}
+            <h2>Install pyserail</h2>
+<p>Use pip to install pyserail module</p>
+<div class="highlight"><pre>pip install pyserial
 </pre></div>
 
 
-<p>Do not add extern "C", unless you are writing this in c++, otherwise
-there would be an error </p>
-<p><code>" error: expected identifier or '(' before string constant extern C"</code></p>
-<h2>Compile your C file</h2>
-<p>It's very easy to use gcc to compile your code.</p>
-<div class="highlight"><pre>gcc -shared -o mytest.dll test.c
+<h2>Open serail port</h2>
+<p>First, import pyserial module</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">serial</span>
 </pre></div>
 
 
-<p>"-shared" means making this a dll file.</p>
-<h2>Call DLL in python</h2>
-<p>Using module ctypes to load a dll file.</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">ctypes</span>
-
-<span class="n">dllPath</span> <span class="o">=</span> <span class="s">r&#39;C:\Users\Administrator\Desktop\mylib.dll&#39;</span>
-<span class="n">dll</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">dllPath</span><span class="p">)</span>
-
-<span class="c">#Change your c argument type to ctypes type</span>
-<span class="n">dll</span><span class="o">.</span><span class="n">add2</span><span class="o">.</span><span class="n">argtypes</span><span class="o">=</span><span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">]</span>  
-<span class="k">print</span> <span class="n">dll</span><span class="o">.</span><span class="n">add2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<p>Second, open your serial port.
+If you don't know which port you are using,
+you can do it like this.</p>
+<div class="highlight"><pre>def open_serialport():
+    PORT_NUM = 1
+    while True:
+        SERIAL_PORT = &#39;COM%d&#39; % PORT_NUM
+        try:
+            ser = serial.Serial(port=SERIAL_PORT,baudrate=1048576,parity=&#39;N&#39;,bytesize=8,stopbits=1,timeout=0)
+            print &quot;OPEN SERIAL PORT ON %s&quot; % SERIAL_PORT
+            return ser
+        except Exception,e:
+            PORT_NUM = PORT_NUM + 1
 </pre></div>
 
 
-<p>If you want to load your dll by using ctype.windll.LoadLibrary(),
-you have to change your C code to</p>
-<div class="highlight"><pre>__declspec( dllexport ) int __stdcall add2(int a, int b)
-{
-    return a+b;
-}
+<h2>Send data package</h2>
+<p>In my case, I need to send binary data to a device through serail port.
+I use struct module to do this.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">struct</span>
+
+<span class="n">senddata</span> <span class="o">=</span> <span class="s">&quot;0015FEFF01FFFFFF0100010000020500&quot;</span>
+<span class="n">str2</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">senddata</span><span class="p">:</span>
+         <span class="n">str1</span> <span class="o">=</span> <span class="n">senddata</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+         <span class="n">s</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span>
+         <span class="n">str2</span><span class="o">+=</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+         <span class="n">senddata</span> <span class="o">=</span> <span class="n">senddata</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ser</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">str2</span><span class="p">)</span>
+        <span class="k">print</span> <span class="nb">repr</span><span class="p">(</span><span class="n">str2</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">ack</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+        <span class="k">print</span> <span class="nb">repr</span><span class="p">(</span><span class="n">ack</span><span class="p">)</span>
 </pre></div>
 
 
-<p>otherwise, there would be an error</p>
-<p><code>"ValueError: Procedure probably called with too many arguments (8 bytes in excess)"</code></p>
+<h2>Unpack binary data</h2>
+<div class="highlight"><pre>for bdata in ack:
+    ddata, = struct.unpack(&#39;B&#39;,bdata)
+    print &quot;%02x&quot; % ddata
+</pre></div>
             
             <section>
 <div class="accordion" id="accordion2">
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="http://rookiebulls.github.io/python-call-c-dll.html#disqus_thread">
+                href="http://rookiebulls.github.io/send-data-through-serial-port.html#disqus_thread">
                 Comments
             </a>
         </div>
@@ -134,8 +140,8 @@ you have to change your C code to</p>
                     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'hightteawhenyouguysfree';
-        var disqus_identifier = 'http://rookiebulls.github.io/python-call-c-dll.html';
-    var disqus_url = 'http://rookiebulls.github.io/python-call-c-dll.html';
+        var disqus_identifier = 'http://rookiebulls.github.io/send-data-through-serial-port.html';
+    var disqus_url = 'http://rookiebulls.github.io/send-data-through-serial-port.html';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -158,14 +164,11 @@ you have to change your C code to</p>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2015-08-05T10:17:00+02:00">八月 5, 2015</time>
+            <time pubdate="pubdate" datetime="2015-08-10T15:21:00+02:00">八月 10, 2015</time>
             <h4>Category</h4>
             <a class="category-link" href="http://rookiebulls.github.io/categories.html#programming-ref">programming</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="http://rookiebulls.github.io/tags.html#c-ref">c
-                    <span>1</span>
-</a></li>
                 <li><a href="http://rookiebulls.github.io/tags.html#python-ref">python
                     <span>3</span>
 </a></li>
