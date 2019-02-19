@@ -11,7 +11,7 @@ branches:
 
 install:
   # 安装最新的hugo
-  - go get github.com/gohugoio/hugo.git
+  - go get github.com/gohugoio/hugo
 
 script:
   # 运行hugo命令
