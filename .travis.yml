@@ -1,17 +1,11 @@
-language: go
-
-go:
-  - '1.10' # 指定Golang 1.10
-
 # Specify which branches to build using a safelist
 # 分支白名单限制: 只有source分支的提交才会触发构建
 branches:
   only:
     - source
 
-install:
-  # 安装最新的hugo
-  - go get github.com/spf13/hugo
+before_install:
+  - sudo apt-get install hugo
 
 script:
   # 运行hugo命令
