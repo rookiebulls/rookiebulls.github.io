@@ -9,15 +9,9 @@ branches:
   only:
     - source
 
-before_install:
-  - mkdir $HOME/src
-  - cd $HOME/src
-  - git clone https://github.com/gohugoio/hugo.git
-
 install:
   # 安装最新的hugo
-  - cd $HOME/src/hugo
-  - go install
+  - go get github.com/gohugoio/hugo.git
 
 script:
   # 运行hugo命令
