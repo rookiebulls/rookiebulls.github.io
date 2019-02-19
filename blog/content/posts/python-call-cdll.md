@@ -1,7 +1,7 @@
 ---
 title: 'Python call dll library'
 date: 2019-02-18T21:49:58+08:00
-draft: true
+draft: false
 slug: python-call-dll-library
 categories:
   - 'Programming'
