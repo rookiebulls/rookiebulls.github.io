@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rookiebulls on rookiebulls</title>
+    <link>/</link>
+    <description>Recent content in rookiebulls on rookiebulls</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Feb 2019 21:49:58 +0800</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Python call dll library</title>
+      <link>/2019/python-call-cdll/</link>
+      <pubDate>Mon, 18 Feb 2019 21:49:58 +0800</pubDate>
+      
+      <guid>/2019/python-call-cdll/</guid>
+      <description>
+
+&lt;h2 id=&#34;install-minggw-and-gcc&#34;&gt;Install MingGW and gcc&lt;/h2&gt;
+
+&lt;p&gt;Install MingGW if you are using Windows, which I am. After intalling MingGW, you need to install gcc compiler. With all this done, you need to add your MingGW Bin directory to your PATH environment. Lauch cmd.exe, type &amp;ldquo;gcc -v&amp;rdquo;, you will see some information if you installed gcc successfully.&lt;/p&gt;
+
+&lt;h2 id=&#34;write-some-code-in-c&#34;&gt;Write some code in C&lt;/h2&gt;
+
+&lt;p&gt;A simple c file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;__declspec( dllexport ) int add2(int a, int b)
+{
+    return a+b;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Do not add extern &amp;ldquo;C&amp;rdquo;, unless you are writing this in c++, otherwise there would be an error.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;quot;error: expected identifier or &#39;(&#39; before string constant extern C&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;compile-your-c-file&#34;&gt;Compile your C file&lt;/h2&gt;
+
+&lt;p&gt;Compile your c file with gcc.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;gcc -shared -o mytest.dll test.c&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;rdquo;-shared&amp;rdquo; means making this a dll file.&lt;/p&gt;
+
+&lt;h2 id=&#34;call-dll-in-python&#34;&gt;Call DLL in python&lt;/h2&gt;
+
+&lt;p&gt;Using module &lt;code&gt;ctypes&lt;/code&gt; to load a dll file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import ctypes
+
+dllPath = r&#39;C:\Users\Administrator\Desktop\mylib.dll&#39;
+dll = ctypes.CDLL(dllPath)
+
+#Change your c argument type to ctypes type
+dll.add2.argtypes=[ctypes.c_int,ctypes.c_int]
+print dll.add2(1,2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you want to load your dll by using ctype.windll.LoadLibrary(), you have to change your C code to&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;__declspec( dllexport ) int __stdcall add2(int a, int b)
+{
+    return a+b;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;otherwise, there would be an error.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;quot;ValueError: Procedure probably called with too many arguments (8 bytes in excess)&amp;quot;&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Control serial port with pyserial</title>
+      <link>/2016/pyserial/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/pyserial/</guid>
+      <description>
+
+&lt;h2 id=&#34;install-pyserail&#34;&gt;Install pyserail&lt;/h2&gt;
+
+&lt;p&gt;Use pip to install pyserail module.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;pip install pyserial&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;open-serail-port&#34;&gt;Open serail port&lt;/h2&gt;
+
+&lt;p&gt;First of all, import pyserial module.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;import pyserial&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Secondly, open your serial port. If you don&amp;rsquo;t know which port you are using, you can do it like this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def open_serialport():
+    PORT_NUM = 1
+    while True:
+        SERIAL_PORT = &#39;COM%d&#39; % PORT_NUM
+        try:
+            ser = serial.Serial(port=SERIAL_PORT,baudrate=1048576,parity=&#39;N&#39;,bytesize=8,stopbits=1,timeout=0)
+            print &amp;quot;OPEN SERIAL PORT ON %s&amp;quot; % SERIAL_PORT
+            return ser
+        except Exception,e:
+            PORT_NUM = PORT_NUM + 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;send-data-package&#34;&gt;Send data package&lt;/h2&gt;
+
+&lt;p&gt;In my case, I need to send binary data to a device through serail port. I use the &lt;code&gt;struct&lt;/code&gt; module to do this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import struct
+
+senddata = &amp;quot;0015FEFF01FFFFFF0100010000020500&amp;quot;
+str2 = &amp;quot;&amp;quot;
+
+while True:
+    if senddata:
+         str1 = senddata[0:2]
+         s = int(str1,16)
+         str2 += struct.pack(&#39;B&#39;,s)
+         senddata = senddata[2:]
+    else:
+        ser.write(str2)
+        print repr(str2)
+        time.sleep(2)
+        ack = ser.read(100)
+        print repr(ack)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;unpack-binary-data&#34;&gt;Unpack binary data&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;for bdata in ack:
+    ddata, = struct.unpack(&#39;B&#39;,bdata)
+    print &amp;quot;%02x&amp;quot; % ddata
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

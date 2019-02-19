@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming on rookiebulls</title>
+    <link>/categories/programming/</link>
+    <description>Recent content in Programming on rookiebulls</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Feb 2019 21:49:58 +0800</lastBuildDate>
+    
+	<atom:link href="/categories/programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python call dll library</title>
+      <link>/2019/python-call-cdll/</link>
+      <pubDate>Mon, 18 Feb 2019 21:49:58 +0800</pubDate>
+      
+      <guid>/2019/python-call-cdll/</guid>
+      <description>Install MingGW and gcc Install MingGW if you are using Windows, which I am. After intalling MingGW, you need to install gcc compiler. With all this done, you need to add your MingGW Bin directory to your PATH environment. Lauch cmd.exe, type &amp;ldquo;gcc -v&amp;rdquo;, you will see some information if you installed gcc successfully.
+Write some code in C A simple c file.
+__declspec( dllexport ) int add2(int a, int b) { return a+b; }  Do not add extern &amp;ldquo;C&amp;rdquo;, unless you are writing this in c++, otherwise there would be an error.</description>
+    </item>
+    
+    <item>
+      <title>Control serial port with pyserial</title>
+      <link>/2016/pyserial/</link>
+      <pubDate>Sun, 21 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/pyserial/</guid>
+      <description>Install pyserail Use pip to install pyserail module.
+pip install pyserial
+Open serail port First of all, import pyserial module.
+import pyserial
+Secondly, open your serial port. If you don&amp;rsquo;t know which port you are using, you can do it like this.
+def open_serialport(): PORT_NUM = 1 while True: SERIAL_PORT = &#39;COM%d&#39; % PORT_NUM try: ser = serial.Serial(port=SERIAL_PORT,baudrate=1048576,parity=&#39;N&#39;,bytesize=8,stopbits=1,timeout=0) print &amp;quot;OPEN SERIAL PORT ON %s&amp;quot; % SERIAL_PORT return ser except Exception,e: PORT_NUM = PORT_NUM + 1  Send data package In my case, I need to send binary data to a device through serail port.</description>
+    </item>
+    
+  </channel>
+</rss>

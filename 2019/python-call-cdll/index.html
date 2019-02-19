@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="rookiebulls">
+  
+  
+  
+  <link rel="prev" href="/2016/pyserial/" />
+  
+  <link rel="canonical" href="/2019/python-call-cdll/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Python call dll library | rookiebulls
+       
+  </title>
+  <meta name="title" content="Python call dll library | rookiebulls">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "/"
+    },
+    "articleSection" : "posts",
+    "name" : "Python call dll library",
+    "headline" : "Python call dll library",
+    "description" : "Install MingGW and gcc Install MingGW if you are using Windows, which I am. After intalling MingGW, you need to install gcc compiler. With all this done, you need to add your MingGW Bin directory to your PATH environment. Lauch cmd.exe, type &ldquo;gcc -v&rdquo;, you will see some information if you installed gcc successfully.
+Write some code in C A simple c file.
+__declspec( dllexport ) int add2(int a, int b) { return a+b; }  Do not add extern &ldquo;C&rdquo;, unless you are writing this in c++, otherwise there would be an error.",
+    "inLanguage" : "en-us",
+    "author" : "rookiebulls",
+    "creator" : "rookiebulls",
+    "publisher": "rookiebulls",
+    "accountablePerson" : "rookiebulls",
+    "copyrightHolder" : "rookiebulls",
+    "copyrightYear" : "2019",
+    "datePublished": "2019-02-18 21:49:58 &#43;0800 CST",
+    "dateModified" : "2019-02-18 21:49:58 &#43;0800 CST",
+    "url" : "/2019/python-call-cdll/",
+    "wordCount" : "205",
+    "keywords" : [ "Python","ctypes", "rookiebulls"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">rookiebulls</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">rookiebulls</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Python call dll library</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="/" rel="author">rookiebulls</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2019-02-18 itemprop="datePublished">February 18, 2019</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="/categories/programming/"> Programming </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="install-minggw-and-gcc">Install MingGW and gcc</h2>
+
+<p>Install MingGW if you are using Windows, which I am. After intalling MingGW, you need to install gcc compiler. With all this done, you need to add your MingGW Bin directory to your PATH environment. Lauch cmd.exe, type &ldquo;gcc -v&rdquo;, you will see some information if you installed gcc successfully.</p>
+
+<h2 id="write-some-code-in-c">Write some code in C</h2>
+
+<p>A simple c file.</p>
+
+<pre><code class="language-c">__declspec( dllexport ) int add2(int a, int b)
+{
+    return a+b;
+}
+</code></pre>
+
+<p>Do not add extern &ldquo;C&rdquo;, unless you are writing this in c++, otherwise there would be an error.</p>
+
+<p><code>&quot;error: expected identifier or '(' before string constant extern C&quot;</code></p>
+
+<h2 id="compile-your-c-file">Compile your C file</h2>
+
+<p>Compile your c file with gcc.</p>
+
+<p><code>gcc -shared -o mytest.dll test.c</code></p>
+
+<p>&rdquo;-shared&rdquo; means making this a dll file.</p>
+
+<h2 id="call-dll-in-python">Call DLL in python</h2>
+
+<p>Using module <code>ctypes</code> to load a dll file.</p>
+
+<pre><code class="language-python">import ctypes
+
+dllPath = r'C:\Users\Administrator\Desktop\mylib.dll'
+dll = ctypes.CDLL(dllPath)
+
+#Change your c argument type to ctypes type
+dll.add2.argtypes=[ctypes.c_int,ctypes.c_int]
+print dll.add2(1,2)
+</code></pre>
+
+<p>If you want to load your dll by using ctype.windll.LoadLibrary(), you have to change your C code to</p>
+
+<pre><code class="language-c">__declspec( dllexport ) int __stdcall add2(int a, int b)
+{
+    return a+b;
+}
+</code></pre>
+
+<p>otherwise, there would be an error.</p>
+
+<p><code>&quot;ValueError: Procedure probably called with too many arguments (8 bytes in excess)&quot;</code></p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>rookiebulls </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=/2019/python-call-cdll/>/2019/python-call-cdll/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                Licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a>
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="/tags/python/">
+                    #Python</a></span>
+            
+            <span class="tag"><a href="/tags/ctypes/">
+                    #ctypes</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="/2016/pyserial/" class="prev" rel="prev" title="Control serial port with pyserial"><i class="iconfont icon-left"></i>&nbsp;Control serial port with pyserial</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2011 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="/">rookiebulls</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
