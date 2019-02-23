@@ -1,28 +1,27 @@
 language: go
 
 go:
-  - '1.11' # 指定Golang 1.11
+  - '1.11' # Use Golang 1.11
 
 # Specify which branches to build using a safelist
-# 分支白名单限制: 只有source分支的提交才会触发构建
 branches:
   only:
     - source
 
 install:
-  # 安装最新的hugo
+  # install hugo
   - go get github.com/gohugoio/hugo
 
 script:
-  # 运行hugo命令
+  # build website
   - hugo
 
 deploy:
-  provider: pages # 重要，指定这是一份github pages的部署配置
-  skip-cleanup: true # 重要，不能省略
-  local-dir: public # 静态站点文件所在目录
-  target-branch: master # 要将静态站点文件发布到哪个分支
-  github-token: $GITHUB_TOKEN # 重要，$GITHUB_TOKEN是变量，需要在GitHub上申请、再到配置到Travis
-  keep-history: true # 是否保持target-branch分支的提交记录
+  provider: pages # Important, it means using github pages to deploy
+  skip-cleanup: true # Important, keep it to true
+  local-dir: public # Your content direcotry after building
+  target-branch: master # Which branch to push to
+  github-token: $GITHUB_TOKEN # Your github access token for travis
+  keep-history: true # keep the target-branch history
   on:
-    branch: source # 博客源码的分支
+    branch: source # source code branch

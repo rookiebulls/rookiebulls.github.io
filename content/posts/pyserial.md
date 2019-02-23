@@ -1,6 +1,6 @@
 ---
 title: 'Control serial port with pyserial'
-date: '2016-08-21'
+date: 2016-08-21
 categories:
   - 'Programming'
 tags:
