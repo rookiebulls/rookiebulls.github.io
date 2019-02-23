@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on rookiebulls</title>
+    <link>/tags/hugo/</link>
+    <description>Recent content in Hugo on rookiebulls</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 23 Feb 2019 10:37:06 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Generate website with Hugo and deploy it with Travis CI</title>
+      <link>/2019/generate-blog-with-hugo/</link>
+      <pubDate>Sat, 23 Feb 2019 10:37:06 +0800</pubDate>
+      
+      <guid>/2019/generate-blog-with-hugo/</guid>
+      <description>Why Hugo I used to use Pelican to generate my website, it works petty well. But in some way, it&amp;rsquo;s just not that perfect, such as, no hot reload, small community, lots of dependencies, not that fast. Hugo, in other way, is fast, nearly no dependencies, better writing experience with hot reloading, so it&amp;rsquo;s clearly a better choice for me.
+Install Hugo If you are on Mac OS, you can install Hugo with Homebrew brew install hugo, for other platforms, check this link, you can find your answers here.</description>
+    </item>
+    
+  </channel>
+</rss>

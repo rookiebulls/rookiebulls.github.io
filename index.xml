@@ -6,15 +6,127 @@
     <description>Recent content in rookiebulls on rookiebulls</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Feb 2019 21:49:58 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 23 Feb 2019 10:37:06 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Python call dll library</title>
-      <link>/2019/python-call-cdll/</link>
-      <pubDate>Mon, 18 Feb 2019 21:49:58 +0800</pubDate>
+      <title>Generate website with Hugo and deploy it with Travis CI</title>
+      <link>/2019/generate-blog-with-hugo/</link>
+      <pubDate>Sat, 23 Feb 2019 10:37:06 +0800</pubDate>
       
-      <guid>/2019/python-call-cdll/</guid>
+      <guid>/2019/generate-blog-with-hugo/</guid>
+      <description>
+
+&lt;h2 id=&#34;why-hugo&#34;&gt;Why Hugo&lt;/h2&gt;
+
+&lt;p&gt;I used to use &lt;a href=&#34;https://blog.getpelican.com&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;Pelican&lt;/a&gt; to generate my website, it works petty well. But in some way, it&amp;rsquo;s just not that perfect, such as, no hot reload, small community, lots of dependencies, not that fast. Hugo, in other way, is fast, nearly no dependencies, better writing experience with hot reloading, so it&amp;rsquo;s clearly a better choice for me.&lt;/p&gt;
+
+&lt;h2 id=&#34;install-hugo&#34;&gt;Install Hugo&lt;/h2&gt;
+
+&lt;p&gt;If you are on Mac OS, you can install Hugo with Homebrew &lt;code&gt;brew install hugo&lt;/code&gt;, for other platforms, check this &lt;a href=&#34;https://gohugo.io/getting-started/installing&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;link&lt;/a&gt;, you can find your answers here.&lt;/p&gt;
+
+&lt;h2 id=&#34;generate-website&#34;&gt;Generate website&lt;/h2&gt;
+
+&lt;p&gt;Use command &lt;code&gt;hugo new site sitename&lt;/code&gt; to generate a website.&lt;/p&gt;
+
+&lt;h2 id=&#34;install-a-theme&#34;&gt;Install a theme&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd blog/themes
+git clone https://github.com/liuzc/LeaveIt.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;customize-your-configuration&#34;&gt;Customize your configuration&lt;/h2&gt;
+
+&lt;p&gt;Open &lt;code&gt;config.toml&lt;/code&gt; and set the &lt;code&gt;theme&lt;/code&gt; property to your theme.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-conf&#34;&gt;baseURL = &amp;quot;/&amp;quot;
+languageCode = &amp;quot;en-us&amp;quot;
+title = &amp;quot;rookiebulls&amp;quot;
+theme = &amp;quot;LeaveIt&amp;quot;
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more configurations, check your theme&amp;rsquo;s example site.&lt;/p&gt;
+
+&lt;h2 id=&#34;add-a-new-post&#34;&gt;Add a new post&lt;/h2&gt;
+
+&lt;p&gt;Run command &lt;code&gt;hugo new posts/new-post-title.md&lt;/code&gt; to add a new post in the &lt;code&gt;content/posts&lt;/code&gt; directory. Hugo supports &lt;code&gt;Markdown&lt;/code&gt; out of box, if you are not familiar with it, here&amp;rsquo;s a &lt;a href=&#34;https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;cheatsheet&lt;/a&gt; about it.&lt;/p&gt;
+
+&lt;h2 id=&#34;build-you-website&#34;&gt;Build you website&lt;/h2&gt;
+
+&lt;p&gt;Just type &lt;code&gt;hugo&lt;/code&gt;, your website will be generated automatically in the &lt;code&gt;public&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;h2 id=&#34;deploy-your-website&#34;&gt;Deploy your website&lt;/h2&gt;
+
+&lt;p&gt;The content in the &lt;code&gt;pubic&lt;/code&gt; directory is static, you can host it with Nginx, Apache&amp;hellip; any web server will be fine, but you need to have a VPS first. I choose Github Pages to host my website, because it&amp;rsquo;s free and perfectly suitable for static site.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a new repository
+&lt;img src=&#34;https://ws4.sinaimg.cn/large/006tKfTcgy1g0gabrlfurj31dz0u07b9.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Push your content to master branch
+&lt;img src=&#34;https://ws2.sinaimg.cn/large/006tKfTcgy1g0gaf36divj314l0u0to5.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;auto-deploy-your-website-with-travis-ci&#34;&gt;Auto deploy your website with Travis CI&lt;/h2&gt;
+
+&lt;p&gt;Doing build, copy, paste and push operations all the time is really annoying, so I decide to do it in an automatic way. Travis CI is a perfect solution for this, it works perfectly with Github, you just need to push your source content to Github, and let Travis CI do the rest.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Sign up with your Github account.
+&lt;img src=&#34;https://ws1.sinaimg.cn/large/006tKfTcgy1g0garjc1wcj31o20u0dlr.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Add your repository
+&lt;img src=&#34;https://ws4.sinaimg.cn/large/006tKfTcgy1g0gay5l3zkj31se0pejvc.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;https://ws2.sinaimg.cn/large/006tKfTcgy1g0gb01jd37j318g0nsad2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Create a new personal access token
+&lt;img src=&#34;https://ws4.sinaimg.cn/large/006tKfTcgy1g0gb3t3fy1j31ns0h443a.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;Set up your repository settings in Travis, add a new environment variable named GITHUB_TOKEN with the token you created in step 3
+&lt;img src=&#34;https://ws3.sinaimg.cn/large/006tKfTcgy1g0gb6dbo4yj31q10u0gsn.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Add .travis.yml to your website root directory&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;language: go
+
+go:
+- &#39;1.11&#39; # Use Golang 1.11
+
+# Specify which branches to build using a safelist
+branches:
+only:
+- source
+
+install:
+# install hugo
+- go get github.com/gohugoio/hugo
+
+script:
+# build website
+- hugo
+
+deploy:
+provider: pages # Important, it means using github pages to deploy
+skip-cleanup: true # Important, keep it to true
+local-dir: public # Your content direcotry after building
+target-branch: master # Which branch to push to
+github-token: $GITHUB_TOKEN # Your github access token for travis
+keep-history: true # keep the target-branch history
+on:
+branch: source # source content branch
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Push your source content to &lt;code&gt;source&lt;/code&gt; branch&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;With all this done, next time your update your source content, Travis CI will deploy it automatically.
+&lt;img src=&#34;https://ws1.sinaimg.cn/large/006tKfTcgy1g0gbm1z0psj322c0bomzp.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Python call dll library</title>
+      <link>/2016/python-call-cdll/</link>
+      <pubDate>Thu, 08 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/python-call-cdll/</guid>
       <description>
 
 &lt;h2 id=&#34;install-minggw-and-gcc&#34;&gt;Install MingGW and gcc&lt;/h2&gt;
